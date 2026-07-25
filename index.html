@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>تسک هام | مدیریت ساده کارهای روزانه</title>
+  <meta name="description" content="تسک هام یک وب اپ سبک و مرتب برای ثبت، پیگیری و مدیریت ساده تسک های روزانه روی موبایل و دسکتاپ است.">
+  <meta name="application-name" content="تسک هام">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:title" content="تسک هام | مدیریت ساده کارهای روزانه">
+  <meta property="og:description" content="یک وب اپ سبک و نصب‌پذیر برای ثبت و مدیریت تسک‌های روزانه.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="تسک هام | مدیریت ساده کارهای روزانه">
+  <meta name="twitter:description" content="یک وب اپ سبک و نصب‌پذیر برای ثبت و مدیریت تسک‌های روزانه.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="تسک هام">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./assets/icons/app/apple-touch-icon.png">
+  <link rel="icon" href="./assets/icons/app/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/icons/app/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="shortcut icon" href="./assets/icons/app/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/icons/fontawesome/css/task-icons.css">
+  <link rel="stylesheet" href="./assets/vendor/jalalidatepicker/jalalidatepicker.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"تسک هام","alternateName":"My Tasks","applicationCategory":"ProductivityApplication","operatingSystem":"Web","inLanguage":["fa","en"],"description":"وب اپ سبک و نصب‌پذیر برای ثبت و مدیریت تسک‌های روزانه."}
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <main class="phone-frame">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">
+            <img src="./assets/icons/app/icon.svg" width="58" height="58" alt="" aria-hidden="true">
+          </div>
+          <div>
+            <p class="eyebrow" data-i18n="eyebrow">نوشتن ساده و آسان</p>
+            <h1 data-i18n="appName">تسک هام</h1>
+          </div>
+        </div>
+
+        <div id="topbarActions" class="topbar-actions">
+          <button class="icon-btn" id="languageBtn" type="button" aria-label="Switch language" data-i18n-aria="switchLanguage">
+            <i class="fa-solid fa-language"></i>
+            <span class="mobile-action-label" data-i18n="language">زبان</span>
+          </button>
+          <button class="icon-btn" id="historyBtn" type="button" aria-label="تاریخچه" data-i18n-aria="history">
+            <i class="fa-regular fa-clock"></i>
+            <span class="mobile-action-label" data-i18n="history">تاریخچه</span>
+          </button>
+          <button class="icon-btn" id="trashBtn" type="button" aria-label="سطل زباله" data-i18n-aria="trash">
+            <i class="fa-solid fa-trash-can"></i>
+            <span class="mobile-action-label" data-i18n="trash">سطل زباله</span>
+          </button>
+          <button class="icon-btn" id="settingsBtn" type="button" aria-label="تنظیمات" data-i18n-aria="settings">
+            <i class="fa-solid fa-sliders"></i>
+            <span class="mobile-action-label" data-i18n="settings">تنظیمات</span>
+          </button>
+        </div>
+        <button id="mobileMenuBtn" class="icon-btn mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="topbarActions" data-i18n-aria="openMenu">
+          <span></span><span></span><span></span>
+        </button>
+        <button id="mobileMenuBackdrop" class="mobile-menu-backdrop" type="button" hidden tabindex="-1" aria-hidden="true"></button>
+      </header>
+
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="hero-label" data-i18n="heroLabel">امروز چه تسک هایی داری؟</p>
+          <h2 id="todayMessage">هر چیزی که امروز باید انجام شود را همین‌جا بنویس و با خیال راحت جلو برو.</h2>
+          <button id="installBtn" class="primary-btn" type="button" hidden>
+            <i class="fa-solid fa-download"></i>
+            <span data-i18n="installApp">نصب روی دستگاه</span>
+          </button>
+        </div>
+
+        <div class="hero-side">
+          <div class="hero-metrics">
+            <div class="metric-pill">
+              <span data-i18n="activeTasks">تسک فعال</span>
+              <strong id="activeCount">۰</strong>
+            </div>
+            <div class="metric-pill">
+              <span data-i18n="remainingCapacity">ظرفیت باقی‌مانده</span>
+              <strong id="remainingCount">۵</strong>
+            </div>
+            <div class="metric-pill metric-progress">
+              <span data-i18n="inProgressTasks">در حال انجام</span>
+              <strong id="inProgressCount">۰</strong>
+            </div>
+            <div class="metric-pill metric-priority">
+              <span data-i18n="highPriorityTasks">اولویت بالا</span>
+              <strong id="highPriorityCount">۰</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="task-input-card">
+        <div class="task-input-head">
+          <div>
+            <h3 data-i18n="newTask">تسک جدید</h3>
+          </div>
+          <div class="char-badge" id="charCounter">۰ / ۵۰</div>
+        </div>
+
+        <form id="taskForm" class="task-form">
+          <label class="sr-only" for="taskInput" data-i18n="taskTitleLabel">عنوان تسک</label>
+          <input id="taskInput" name="task" type="text" maxlength="50" placeholder="عنوان تسک..." data-i18n-placeholder="taskTitlePlaceholder" autocomplete="off">
+        </form>
+        <label class="sr-only" for="taskNoteInput" data-i18n="taskNoteLabel">توضیحات تکمیلی</label>
+        <textarea id="taskNoteInput" class="task-note-input" rows="3" maxlength="500" placeholder="توضیحات تکمیلی (اختیاری)" data-i18n-placeholder="taskNotePlaceholder"></textarea>
+        <div class="task-options">
+          <label class="option-field" for="taskCategoryInput">
+            <i class="fa-solid fa-tag" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="category">دسته‌بندی</span>
+            <select id="taskCategoryInput" data-i18n-aria="category"></select>
+          </label>
+          <label class="option-field priority-field" for="taskPriorityInput">
+            <i class="fa-solid fa-flag" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="priority">اولویت</span>
+            <select id="taskPriorityInput" data-i18n-aria="priority"></select>
+          </label>
+          <label class="option-field status-field" for="taskStatusInput">
+            <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="taskStatus">وضعیت تسک</span>
+            <select id="taskStatusInput" data-i18n-aria="taskStatus"></select>
+          </label>
+          <label class="option-field" for="taskDueInput">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="dueDate">سررسید</span>
+            <input id="taskDueInput" type="text" data-jdp data-jdp-target-value-input="#taskDueValue" data-jdp-target-value-type="gregorian" data-i18n-aria="dueDate">
+            <input id="taskDueNative" type="datetime-local" hidden data-i18n-aria="dueDate">
+            <input id="taskDueValue" type="hidden">
+          </label>
+        </div>
+        <button id="addTaskBtn" class="primary-btn add-task-btn" type="submit" form="taskForm">
+          <i class="fa-solid fa-plus"></i>
+          <span data-i18n="addToTasks">افزودن به تسک هام</span>
+        </button>
+      </section>
+
+      <section class="task-board">
+        <div class="section-head">
+          <h3 data-i18n="tasksSection">تسک هام</h3>
+        </div>
+
+        <div class="task-tools">
+          <label class="search-field" for="taskSearchInput">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="searchTasks">جستجو در تسک‌ها</span>
+            <input id="taskSearchInput" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" data-i18n-aria="searchTasks">
+          </label>
+          <button id="selectAllBtn" class="soft-btn compact-btn" type="button" data-i18n="selectAll">انتخاب همه</button>
+          <button id="clearSearchBtn" class="soft-btn compact-btn" type="button" hidden data-i18n="clearSearch">پاک کردن</button>
+        </div>
+        <div class="task-filters" aria-label="فیلتر تسک‌ها" data-i18n-aria="filterTasks">
+          <label class="filter-field" for="taskCategoryFilter">
+            <span class="sr-only" data-i18n="filterCategory">فیلتر دسته‌بندی</span>
+            <select id="taskCategoryFilter" data-i18n-aria="filterCategory"></select>
+          </label>
+          <label class="filter-field" for="taskPriorityFilter">
+            <span class="sr-only" data-i18n="filterPriority">فیلتر اولویت</span>
+            <select id="taskPriorityFilter" data-i18n-aria="filterPriority"></select>
+          </label>
+          <label class="filter-field" for="taskStatusFilter">
+            <span class="sr-only" data-i18n="filterStatus">فیلتر وضعیت</span>
+            <select id="taskStatusFilter" data-i18n-aria="filterStatus"></select>
+          </label>
+        </div>
+
+        <div id="bulkBar" class="bulk-bar" hidden>
+          <strong id="selectedCount">۰ انتخاب شده</strong>
+          <div class="bulk-edit-controls">
+            <label class="sr-only" for="bulkCategoryInput" data-i18n="bulkCategory">دسته‌بندی جدید</label>
+            <select id="bulkCategoryInput" data-i18n-aria="bulkCategory"></select>
+            <label class="sr-only" for="bulkPriorityInput" data-i18n="bulkPriority">اولویت جدید</label>
+            <select id="bulkPriorityInput" data-i18n-aria="bulkPriority"></select>
+            <label class="sr-only" for="bulkStatusInput" data-i18n="bulkStatus">وضعیت جدید</label>
+            <select id="bulkStatusInput" data-i18n-aria="bulkStatus"></select>
+            <button id="applyBulkChangesBtn" class="soft-btn compact-btn" type="button" data-i18n="applyBulkChanges">اعمال تغییرات</button>
+          </div>
+          <div class="bulk-actions">
+            <button id="bulkCompleteBtn" class="soft-btn compact-btn" type="button"><i class="fa-solid fa-check"></i><span data-i18n="complete">تکمیل!</span></button>
+            <button id="bulkDeleteBtn" class="ghost-btn compact-btn danger-btn" type="button"><i class="fa-solid fa-trash-can"></i><span data-i18n="delete">حذف</span></button>
+            <button id="clearSelectionBtn" class="text-btn" type="button" data-i18n="clearSelection">لغو انتخاب</button>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-illustration">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+          <h4 data-i18n="emptyTitle">لیستت هنوز خالیه</h4>
+          <p data-i18n="emptyBody">هر کاری که نمی‌خواهی از یادت برود را همین‌جا بنویس.</p>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+      </section>
+
+      <footer class="bottom-panel">
+        <div class="bottom-glow" aria-hidden="true"></div>
+        <p class="copyright-text">Copyright © <a href="https://amirrezaa.ir" target="_blank" rel="noopener noreferrer">amirrezaa.ir</a></p>
+        <p class="app-version" aria-label="Application version">v2.1.0</p>
+      </footer>
+    </main>
+  </div>
+
+  <div id="detailModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="detailModal"></div>
+    <section class="modal-panel">
+      <div class="modal-head">
+        <h3 data-i18n="editTask">ویرایش تسک</h3>
+        <button class="icon-btn" type="button" data-close="detailModal" aria-label="بستن" data-i18n-aria="close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="detailForm" class="modal-body">
+        <input id="detailInput" type="text" maxlength="50" autocomplete="off" data-i18n-placeholder="taskTitlePlaceholder">
+        <textarea id="detailNoteInput" class="task-note-input detail-note-input" rows="4" maxlength="500" placeholder="توضیحات تکمیلی" data-i18n-placeholder="taskNoteOnlyPlaceholder"></textarea>
+        <div class="task-options">
+          <label class="option-field" for="detailCategoryInput">
+            <i class="fa-solid fa-tag" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="category">دسته‌بندی</span>
+            <select id="detailCategoryInput" data-i18n-aria="category"></select>
+          </label>
+          <label class="option-field priority-field" for="detailPriorityInput">
+            <i class="fa-solid fa-flag" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="priority">اولویت</span>
+            <select id="detailPriorityInput" data-i18n-aria="priority"></select>
+          </label>
+          <label class="option-field status-field" for="detailStatusInput">
+            <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="taskStatus">وضعیت تسک</span>
+            <select id="detailStatusInput" data-i18n-aria="taskStatus"></select>
+          </label>
+          <label class="option-field" for="detailDueInput">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+            <span class="sr-only" data-i18n="dueDate">سررسید</span>
+            <input id="detailDueInput" type="text" data-jdp data-jdp-target-value-input="#detailDueValue" data-jdp-target-value-type="gregorian" data-i18n-aria="dueDate">
+            <input id="detailDueNative" type="datetime-local" hidden data-i18n-aria="dueDate">
+            <input id="detailDueValue" type="hidden">
+          </label>
+        </div>
+        <p id="detailDate" class="meta-line"></p>
+        <div class="modal-actions">
+          <button class="primary-btn" type="submit" data-i18n="save">ذخیره</button>
+          <button class="ghost-btn" type="button" id="deleteTaskBtn" data-i18n="delete">حذف</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div id="settingsModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="settingsModal"></div>
+    <section class="modal-panel large-panel">
+      <div class="modal-head">
+        <h3 data-i18n="settings">تنظیمات</h3>
+        <button class="icon-btn" type="button" data-close="settingsModal" aria-label="بستن" data-i18n-aria="close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body settings-body">
+        <section class="settings-block">
+          <div class="section-head compact">
+            <h4 data-i18n="appearance">حالت نمایش</h4>
+          </div>
+          <div class="segmented" id="appearanceModes">
+            <button type="button" data-mode="system" data-i18n="system">سیستم</button>
+            <button type="button" data-mode="light" data-i18n="light">روشن</button>
+            <button type="button" data-mode="dark" data-i18n="dark">تیره</button>
+          </div>
+        </section>
+
+        <section class="settings-block">
+          <div class="section-head compact">
+            <h4 data-i18n="taskLimit">محدودیت تسک فعال</h4>
+            <span id="limitValue">۵</span>
+          </div>
+          <div class="range-field">
+            <input id="limitRange" type="range" min="1" max="50" value="5">
+          </div>
+        </section>
+
+        <section class="settings-block">
+          <div class="section-head compact">
+            <h4 data-i18n="fontSize">اندازه فونت</h4>
+            <span id="fontSizeValue">معمولی</span>
+          </div>
+          <div class="range-field">
+            <input id="fontSizeRange" type="range" min="0" max="4" value="2">
+          </div>
+          <div class="font-preferences">
+            <label class="setting-select" for="fontFamilyInput">
+              <span data-i18n="fontFamily">فونت</span>
+              <select id="fontFamilyInput" data-i18n-aria="fontFamily"></select>
+            </label>
+            <label class="setting-select" for="fontWeightInput">
+              <span data-i18n="fontWeight">ضخامت فونت</span>
+              <select id="fontWeightInput" data-i18n-aria="fontWeight"></select>
+            </label>
+          </div>
+          <label class="accessibility-toggle high-contrast-toggle" for="highContrastToggle">
+            <input id="highContrastToggle" type="checkbox">
+            <span><strong data-i18n="highContrast">کنتراست بالا</strong></span>
+          </label>
+        </section>
+
+        <section class="settings-block">
+          <div class="section-head compact">
+            <h4 data-i18n="themes">دیزاین‌ها</h4>
+            <span data-i18n="themeCount">۸ حالت</span>
+          </div>
+          <div id="themeGrid" class="theme-grid"></div>
+        </section>
+
+        <section class="settings-block">
+          <div class="section-head compact">
+            <h4 data-i18n="appLock">قفل برنامه</h4>
+            <span id="lockStatus" data-i18n="lockDisabled">غیرفعال</span>
+          </div>
+          <div class="security-controls">
+            <label class="sr-only" for="pinInput" data-i18n="pinLabel">پین ۴ تا ۱۲ رقمی</label>
+            <input id="pinInput" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" type="password" autocomplete="new-password" data-i18n-placeholder="pinPlaceholder">
+            <button id="savePinBtn" class="soft-btn" type="button" data-i18n="savePin">ثبت پین</button>
+            <button id="disableLockBtn" class="ghost-btn" type="button" data-i18n="disableLock">غیرفعال کردن قفل</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <div id="lockModal" class="modal lock-modal" hidden>
+    <div class="modal-backdrop"></div>
+    <section class="modal-panel lock-panel" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+      <div class="lock-mark"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockTitle" data-i18n="unlockApp">باز کردن تسک هام</h3>
+      <p data-i18n="unlockHint">برای ادامه، پین خود را وارد کن.</p>
+      <label class="sr-only" for="unlockPinInput" data-i18n="pinLabel">پین ۴ تا ۱۲ رقمی</label>
+      <input id="unlockPinInput" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" type="password" autocomplete="current-password" data-i18n-placeholder="pinPlaceholder">
+      <button id="unlockPinBtn" class="primary-btn" type="button" data-i18n="unlock">باز کردن</button>
+      <p id="unlockStatus" class="lock-status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div id="historyModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="historyModal"></div>
+    <section class="modal-panel">
+      <div class="modal-head">
+        <h3 data-i18n="historyTitle">تاریخچه انجام‌شده‌ها</h3>
+        <button class="icon-btn" type="button" data-close="historyModal" aria-label="بستن" data-i18n-aria="close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul id="historyList" class="history-list"></ul>
+        <div id="historyEmpty" class="empty-history" hidden>
+          <i class="fa-regular fa-clock"></i>
+          <p data-i18n="historyEmpty">هنوز چیزی به تاریخچه اضافه نشده.</p>
+        </div>
+        <div class="pager">
+          <button id="prevHistoryBtn" class="ghost-btn" type="button" data-i18n="previous">قبلی</button>
+          <span id="historyPageLabel">صفحه ۱ از ۱</span>
+          <button id="nextHistoryBtn" class="ghost-btn" type="button" data-i18n="next">بعدی</button>
+        </div>
+        <button id="clearCompletedBtn" class="ghost-btn history-clear-btn" type="button" data-i18n="clearHistory">پاک‌کردن تاریخچه</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="trashModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="trashModal"></div>
+    <section class="modal-panel">
+      <div class="modal-head"><h3 data-i18n="trash">سطل زباله</h3><button class="icon-btn" type="button" data-close="trashModal" data-i18n-aria="close"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="modal-body"><ul id="trashList" class="history-list"></ul><p id="trashEmpty" class="empty-history" data-i18n="trashEmpty">سطل زباله خالی است.</p></div>
+    </section>
+  </div>
+
+  <div id="confirmModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close="confirmModal"></div>
+    <section class="modal-panel confirm-panel">
+      <div class="confirm-icon"><i class="fa-solid fa-trash-can"></i></div>
+      <h3 data-i18n="deleteConfirmTitle">انتقال به سطل زباله؟</h3>
+      <p data-i18n="deleteConfirmText">بعدا می‌توانی تسک را بازیابی یا برای همیشه حذف کنی.</p>
+      <div class="modal-actions"><button id="cancelDeleteBtn" class="ghost-btn" type="button" data-i18n="cancel">انصراف</button><button id="confirmDeleteBtn" class="primary-btn danger-primary" type="button" data-i18n="moveToTrash">انتقال</button></div>
+    </section>
+  </div>
+
+  <div id="languageLoader" class="language-loader" role="status" aria-live="polite" hidden>
+    <div class="language-loader-card">
+      <div class="language-loader-orbit"><i class="fa-solid fa-language"></i></div>
+      <p id="languageLoaderText" data-i18n="languageLoading">در حال تغییر زبان...</p>
+    </div>
+  </div>
+
+  <p id="statusMessage" class="status-message" role="status" aria-live="polite" hidden><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span id="statusMessageText"></span></p>
+
+  <template id="taskItemTemplate">
+    <li class="task-item">
+      <label class="task-select">
+        <input class="task-select-input" type="checkbox">
+        <span aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+      </label>
+      <button class="task-title-btn" type="button"></button>
+      <div class="task-actions">
+        <button class="pin-btn" type="button">
+          <i class="fa-solid fa-thumbtack"></i>
+        </button>
+        <button class="edit-btn" type="button" aria-label="ویرایش تسک" data-i18n-aria="editTask">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="check-btn" type="button" aria-label="تکمیل تسک" data-i18n-aria="completeTask">
+          <i class="fa-solid fa-check"></i>
+          <span data-i18n="complete">تکمیل!</span>
+        </button>
+        <button class="delete-btn" type="button" aria-label="حذف تسک" data-i18n-aria="delete">
+          <i class="fa-solid fa-trash-can"></i>
+          <span data-i18n="delete">حذف</span>
+        </button>
+      </div>
+    </li>
+  </template>
+
+  <template id="historyItemTemplate">
+    <li class="history-item">
+      <div class="history-dot">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div>
+        <p class="history-title"></p>
+        <p class="history-date"></p>
+      </div>
+    </li>
+  </template>
+
+  <script src="./assets/vendor/jalalidatepicker/jalalidatepicker.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "taskham",
+  "description": "A bilingual offline-first PWA for managing daily tasks.",
+  "private": true,
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  },
+  "dependencies": {
+    "@majidh1/jalalidatepicker": "^1.0.0"
+  }
+}

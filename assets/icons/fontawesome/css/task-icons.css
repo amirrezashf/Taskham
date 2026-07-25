@@ -1,0 +1,54 @@
+/* Local Font Awesome subset: only the glyphs used by My Tasks. */
+@font-face {
+  font-family: "Font Awesome 7 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-regular-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../webfonts/fa-solid-900.woff2") format("woff2");
+}
+
+.fa-solid, .fa-regular {
+  display: inline-block;
+  font-family: "Font Awesome 7 Free";
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-align: center;
+  text-rendering: auto;
+  width: 1.25em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-solid { font-weight: 900; }
+.fa-regular { font-weight: 400; }
+.fa-solid::before, .fa-regular::before { content: var(--fa); }
+.fa-calendar { --fa: "\f133"; }
+.fa-check { --fa: "\f00c"; }
+.fa-circle-check { --fa: "\f058"; }
+.fa-circle-exclamation { --fa: "\f06a"; }
+.fa-circle-info { --fa: "\f05a"; }
+.fa-clock { --fa: "\f017"; }
+.fa-download { --fa: "\f019"; }
+.fa-face-smile { --fa: "\f118"; }
+.fa-flag { --fa: "\f024"; }
+.fa-language { --fa: "\f1ab"; }
+.fa-list-check { --fa: "\f0ae"; }
+.fa-lock { --fa: "\f023"; }
+.fa-magnifying-glass { --fa: "\f002"; }
+.fa-palette { --fa: "\f53f"; }
+.fa-pen { --fa: "\f304"; }
+.fa-plus { --fa: "+"; }
+.fa-sliders { --fa: "\f1de"; }
+.fa-tag { --fa: "\f02b"; }
+.fa-thumbtack { --fa: "\f08d"; }
+.fa-trash-can { --fa: "\f2ed"; }
+.fa-xmark { --fa: "\f00d"; }
