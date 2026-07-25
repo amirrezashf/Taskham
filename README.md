@@ -1,37 +1,51 @@
-# Taskham
+# تسک‌هام | Taskham
 
-Taskham is a bilingual, offline-first Progressive Web App (PWA) for managing
-daily tasks. It supports Persian (RTL with Jalali dates) and English (LTR with
-Gregorian dates), and keeps task data on the user's device.
+**تسک‌هام** یک وب‌اپلیکیشن نصب‌پذیر برای مدیریت کارهای روزانه است که با
+فارسی و انگلیسی کار می‌کند. داده‌های تسک، تنظیمات و تاریخچه فقط روی مرورگر
+و دستگاه کاربر نگه‌داری می‌شوند؛ این پروژه بک‌اند، حساب کاربری یا API خارجی
+ندارد. 🧭
 
-## Features
+> رابط فارسی راست‌به‌چپ و تقویم جلالی دارد؛ رابط انگلیسی چپ‌به‌راست و از
+> ورودی تاریخ میلادی مرورگر استفاده می‌کند.
 
-- Create, edit, complete, pin, search, filter, and soft-delete tasks.
-- Assign categories, priorities, statuses, notes, and due dates.
-- Use Jalali dates in Persian and native Gregorian date inputs in English.
-- Persist task data, history, preferences, and the optional local PIN lock in
-  browser `localStorage`.
-- Install as a PWA and use the cached application shell offline after the first
-  successful visit.
-- Switch between light, dark, and system appearance modes; choose from eight
-  visual themes, font sizes, font weights, and high-contrast mode.
-- Run end-to-end checks in desktop Chromium and a Pixel 5 mobile viewport.
+## امکانات
 
-## Technology
+- ساخت تسک با عنوان، توضیحات تکمیلی، دسته‌بندی الزامی، تاریخ سررسید، اولویت
+  اختیاری و وضعیت انجام.
+- ویرایش تسک و تغییر دسته‌بندی، اولویت، وضعیت، توضیحات و سررسید پس از ساخت.
+- وضعیت‌های `در انتظار انجام`، `در حال انجام`، `انجام شده`، `نیازمند بازبینی`
+  و `تکمیل نهایی`.
+- پین‌کردن تسک‌ها؛ تسک‌های پین‌شده همیشه پیش از بقیه نمایش داده می‌شوند و
+  بعد از آن اولویت بالاتر در رتبه بالاتر است.
+- جست‌وجو در عنوان و توضیحات، فیلتر دسته‌بندی/اولویت/وضعیت، انتخاب همه و
+  ویرایش یا حذف گروهی.
+- تاریخچه تسک‌های تکمیل‌شده با زمان ایجاد، ویرایش و تکمیل؛ حذف نرم با امکان
+  بازیابی از سطل زباله.
+- نگه‌داری حداکثر ۵۰ تسک فعال، با شمارش تسک‌های در حال انجام و اولویت بالا.
+- قفل محلی اختیاری با PIN دقیقاً چهاررقمی و نشست معتبر ۱۰ دقیقه‌ای.
+- انتخاب زبان، حالت روشن/تیره/سیستم، هشت تم، پنج اندازه فونت، سه وزن فونت،
+  خانواده فونت و حالت کنتراست بالا.
+- نصب روی Chrome و دستگاه‌های سازگار با PWA و استفاده آفلاین از پوسته برنامه
+  پس از اولین بازدید موفق. ✨
 
-- Static HTML, CSS, and vanilla JavaScript.
-- Service Worker and Web App Manifest for PWA support.
-- Local Font Awesome Free subset for UI icons.
-- `@majidh1/jalalidatepicker` for the Persian date picker.
-- Playwright for end-to-end testing.
+## فناوری‌ها
 
-## Requirements
+- HTML، CSS و JavaScript بدون فریم‌ورک.
+- Web App Manifest و Service Worker برای قابلیت‌های PWA و cache آفلاین.
+- [Font Awesome Free](https://fontawesome.com/) به‌صورت محلی برای آیکون‌ها.
+- [`@majidh1/jalalidatepicker`](https://www.npmjs.com/package/@majidh1/jalalidatepicker)
+  برای انتخاب تاریخ جلالی.
+- [Playwright](https://playwright.dev/) برای تست end-to-end در Chromium دسکتاپ
+  و نمای موبایل Pixel 5.
 
-- Node.js 18 or newer, as required by Playwright.
+## پیش‌نیازها
+
+- Node.js `18` یا جدیدتر.
 - npm.
-- Python 3 for the static development server configured in Playwright.
+- Python 3 برای اجرای سرور استاتیک محلی که در تنظیمات Playwright استفاده شده
+  است.
 
-## Install and run
+## اجرا در محیط توسعه
 
 ```bash
 npm ci
@@ -39,54 +53,87 @@ npx playwright install chromium
 python3 -m http.server 4173
 ```
 
-Open `http://127.0.0.1:4173/index.html` in a browser. Serving through
-`localhost` or HTTPS is required for Service Worker registration and PWA
-installation.
+سپس `http://127.0.0.1:4173/index.html` را در مرورگر باز کنید. ثبت Service
+Worker و نصب PWA فقط روی `localhost` یا HTTPS در دسترس است.
 
-## Test
+## تست
 
 ```bash
 npm run test:e2e
 ```
 
-The Playwright configuration starts `python3 -m http.server 4173`
-automatically while tests run.
+تنظیمات Playwright در زمان تست، `python3 -m http.server 4173` را خودکار اجرا
+می‌کند و سناریوهای اصلی را در Chromium دسکتاپ و Pixel 5 بررسی می‌کند.
 
-## Build and production
+## انتشار و محیط Production
 
-There is no build step. Deploy the repository's static files to any web server
-that serves HTTPS. The included `.htaccess` adds security, compression, and
-cache headers for Apache-compatible hosting.
+مرحله build وجود ندارد. فایل‌های استاتیک مخزن را روی یک وب‌سرور دارای HTTPS
+منتشر کنید. فایل `.htaccess` موجود، headerهای امنیتی، فشرده‌سازی و cache را
+برای میزبان‌های سازگار با Apache تنظیم می‌کند.
 
-## Configuration and data
+برای به‌روزرسانی Service Worker، نسخه cache در `sw.js` را همراه با تغییرات
+مربوط به فایل‌های cache‌شده بررسی و به‌روزرسانی کنید.
 
-Taskham has no environment variables, backend service, or external API.
-Application data and preferences remain in browser `localStorage` on the
-current device. Clearing browser site data removes that local information.
+## داده و حریم خصوصی
 
-## Project structure
+- متغیر محیطی، بک‌اند و API خارجی وجود ندارد.
+- تسک‌ها، تاریخچه، سطل زباله، ترجیحات ظاهری و داده قفل محلی در `localStorage`
+  مرورگر همان دستگاه ذخیره می‌شوند.
+- پاک‌کردن site data مرورگر، این اطلاعات محلی را حذف می‌کند.
+- این برنامه همگام‌سازی میان دستگاه‌ها یا پشتیبان‌گیری ابری ندارد.
+
+## ساختار پروژه
 
 ```text
-assets/                 Styles, icons, scripts, and third-party browser assets
-tests/                  Playwright end-to-end tests
-index.html              Application entry point
-manifest.webmanifest    PWA metadata
-sw.js                   Offline cache and Service Worker
-.htaccess               Apache hosting headers
+assets/
+  css/                 استایل‌ها و تم‌ها
+  icons/               آیکون برنامه و Font Awesome Free
+  js/                  منطق برنامه، ترجمه‌ها و ذخیره‌سازی محلی
+  vendor/              وابستگی‌های مرورگر، از جمله date picker جلالی
+tests/
+  e2e/                 سناریوهای Playwright
+  pages/               helperهای صفحه تست
+index.html             نقطه ورود برنامه
+manifest.webmanifest   مشخصات نصب PWA
+sw.js                  Service Worker و cache آفلاین
+.htaccess              headerهای Apache برای deployment
 ```
 
-## Fonts
+## فونت‌ها و لایسنس‌ها
 
-Proprietary local font packages are deliberately excluded from this public
-repository. See [`assets/fonts/README.md`](assets/fonts/README.md) before
-adding licensed fonts to a local deployment.
+بسته‌های فونت محلی دارای لایسنس تجاری عمداً در این مخزن عمومی قرار نگرفته‌اند.
+پیش از افزودن فونت لایسنس‌دار به deployment محلی، راهنمای
+[`assets/fonts/README.md`](assets/fonts/README.md) را بخوانید. جزئیات مجوز
+وابستگی‌ها و دارایی‌های شخص ثالث در
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) ثبت شده است. 📦
 
-## Contributing
+## مشارکت
 
-Issues and pull requests are welcome. Keep changes focused, preserve Persian
-and English behavior, and run `npm run test:e2e` before opening a pull request.
+مشارکت از طریق Issue و Pull Request استقبال می‌شود. لطفاً تغییرات را محدود و
+قابل‌بررسی نگه دارید، رفتار هر دو زبان فارسی و انگلیسی را حفظ کنید و قبل از
+ارسال Pull Request این دستور را اجرا کنید:
 
-## License
+```bash
+npm run test:e2e
+```
 
-The Taskham source code is available under the [MIT License](LICENSE).
-Third-party packages and assets remain subject to their own licenses.
+## مجوز
+
+کد منبع تسک‌هام تحت [MIT License](LICENSE) منتشر شده است. بسته‌ها و دارایی‌های
+شخص ثالث تابع مجوزهای خودشان هستند.
+
+---
+
+## English Overview
+
+**Taskham** is a bilingual, offline-first PWA for daily task management. It
+supports Persian RTL with Jalali dates and English LTR with native Gregorian
+date inputs. Tasks, settings, history, trash, and the optional local PIN lock
+are stored only in the current browser's `localStorage`; there is no backend,
+account system, or external API.
+
+Key capabilities include task creation and editing, categories, optional
+priorities, statuses, due dates, pinning, search, filters, bulk changes,
+completed-task history, recoverable trash, visual preferences, and PWA
+installation. Run `npm ci`, `npx playwright install chromium`, then
+`npm run test:e2e` to validate the project. 🧪
