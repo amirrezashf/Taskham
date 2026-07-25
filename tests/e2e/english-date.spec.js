@@ -1,11 +1,12 @@
 const { test, expect } = require("@playwright/test")
+const { openTopbarAction } = require("../pages/task.page")
 
 test("uses a native Gregorian date picker and saves its value in English", async ({ page }) => {
   await page.goto("/index.html")
   await page.evaluate(() => localStorage.clear())
   await page.reload()
 
-  await page.getByRole("button", { name: "Switch to English" }).click()
+  await openTopbarAction(page, "Switch to English")
   await expect(page.locator("#languageLoader")).toBeVisible()
   await expect(page.locator("html")).toHaveAttribute("lang", "en", { timeout: 3000 })
   await expect(page.locator("#languageLoader")).toBeHidden()
@@ -14,7 +15,7 @@ test("uses a native Gregorian date picker and saves its value in English", async
   await expect(page.locator("#taskDueInput")).toBeHidden()
   await expect(dueDate).toHaveAttribute("type", "datetime-local")
 
-  await page.getByLabel("Task title").fill("Send the proposal")
+  await page.getByLabel("Task name").fill("Send the proposal")
   await page.getByLabel("Category").first().selectOption("work")
   await dueDate.fill("2030-02-03T14:45")
   await page.getByRole("button", { name: "Add to My Tasks" }).click()
