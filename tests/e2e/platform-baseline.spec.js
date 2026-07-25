@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test")
 
-test("exposes essential SEO and browser-security metadata", async ({ page, request }) => {
+test("exposes essential browser metadata", async ({ page, request }) => {
   await page.goto("/index.html")
 
   await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.+/)
@@ -14,8 +14,4 @@ test("exposes essential SEO and browser-security metadata", async ({ page, reque
   const manifest = await request.get("/manifest.webmanifest")
   expect(manifest.ok()).toBeTruthy()
   await expect(manifest.json()).resolves.toMatchObject({ categories: ["productivity"], prefer_related_applications: false })
-
-  const robots = await request.get("/robots.txt")
-  expect(robots.ok()).toBeTruthy()
-  await expect(robots.text()).resolves.toContain("User-agent: *")
 })

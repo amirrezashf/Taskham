@@ -36,6 +36,10 @@ pnpm-debug.log*
 *.swp
 *.swo
 
+# Deployment-specific files are managed by the hosting environment.
+.htaccess
+robots.txt
+
 # Proprietary font packages are intentionally not redistributed publicly.
 assets/fonts/*
 !assets/fonts/README.md
