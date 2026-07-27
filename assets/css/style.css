@@ -177,9 +177,15 @@
   --hero-overlay: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
 }
 
-/* Licensed local font files are deliberately not bundled in the public repo.
-   The named families below fall back to the system sans-serif stack unless a
-   deployment supplies its own licensed @font-face declarations. */
+/* Licensed local fonts are optional in public clones but load when deployed. */
+@font-face { font-family: "Dana"; src: url("../fonts/dana/dana-fanum-regular.woff2") format("woff2"); font-style: normal; font-weight: 300 500; font-display: swap; }
+@font-face { font-family: "Dana"; src: url("../fonts/dana/dana-fanum-demibold.woff2") format("woff2"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: "IRANSans"; src: url("../fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Light.woff2") format("woff2"); font-style: normal; font-weight: 300; font-display: swap; }
+@font-face { font-family: "IRANSans"; src: url("../fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Medium.woff2") format("woff2"); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: "IRANSans"; src: url("../fonts/IRANSans/WebFonts/fonts/woff2/IRANSansWeb_Bold.woff2") format("woff2"); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: "Peyda"; src: url("../fonts/peyda/PeydaWeb/woff2/PeydaWeb-Regular.woff2") format("woff2"); font-style: normal; font-weight: 300; font-display: swap; }
+@font-face { font-family: "Peyda"; src: url("../fonts/peyda/PeydaWeb/woff2/PeydaWeb-Medium.woff2") format("woff2"); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: "Peyda"; src: url("../fonts/peyda/PeydaWeb/woff2/PeydaWeb-Bold.woff2") format("woff2"); font-style: normal; font-weight: 700; font-display: swap; }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
