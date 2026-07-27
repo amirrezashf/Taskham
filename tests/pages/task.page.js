@@ -1,10 +1,12 @@
+const { expect } = require("@playwright/test")
+
 class TaskPage {
   constructor(page) {
     this.page = page
     this.title = page.getByLabel("عنوان تسک")
     this.note = page.getByLabel("توضیحات تکمیلی")
-    this.category = page.getByLabel("دسته‌بندی").first()
-    this.dueDate = page.getByLabel("سررسید").first()
+    this.category = page.locator("#taskCategoryInput")
+    this.dueDate = page.locator("#taskDueInput")
     this.addButton = page.getByRole("button", { name: "افزودن به تسک هام" })
     this.search = page.getByLabel("جستجو در تسک‌ها")
   }
@@ -18,7 +20,13 @@ class TaskPage {
     await this.page.reload()
   }
 
+  async openComposer() {
+    const mobileAddButton = this.page.getByRole("button", { name: "افزودن تسک جدید" })
+    if ((await mobileAddButton.isVisible()) && !(await this.page.locator("#mobileTaskModal").isVisible())) await mobileAddButton.click()
+  }
+
   async addTask({ title, note = "", category = "", dueDate = "" }) {
+    await this.openComposer()
     await this.title.fill(title)
     await this.note.fill(note)
     if (category) await this.category.selectOption(category)
@@ -26,6 +34,9 @@ class TaskPage {
       await this.page.locator("#taskDueValue").evaluate((input, value) => { input.value = value }, dueDate)
     }
     await this.addButton.click()
+    if (await this.page.locator("#mobileTaskModal").isVisible()) {
+      await expect(this.page.locator("#mobileTaskModal")).toBeHidden()
+    }
   }
 }
 
@@ -35,4 +46,9 @@ async function openTopbarAction(page, name) {
   await page.getByRole("button", { name }).click()
 }
 
-module.exports = { TaskPage, openTopbarAction }
+async function openTaskComposer(page, name = "افزودن تسک جدید") {
+  const mobileAddButton = page.getByRole("button", { name })
+  if (await mobileAddButton.isVisible()) await mobileAddButton.click()
+}
+
+module.exports = { TaskPage, openTopbarAction, openTaskComposer }

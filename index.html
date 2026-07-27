@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; form-action 'self'; upgrade-insecure-requests">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0f766e">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fa_IR">
   <meta property="og:title" content="تسک هام | مدیریت ساده کارهای روزانه">
@@ -22,11 +22,11 @@
   <meta name="apple-mobile-web-app-title" content="تسک هام">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./assets/icons/app/apple-touch-icon.png">
-  <link rel="icon" href="./assets/icons/app/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/icons/app/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="./assets/icons/app/favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="shortcut icon" href="./assets/icons/app/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/icons/app/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="shortcut icon" href="./assets/icons/app/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/icons/fontawesome/css/task-icons.css">
-  <link rel="stylesheet" href="./assets/vendor/jalalidatepicker/jalalidatepicker.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebApplication","name":"تسک هام","alternateName":"My Tasks","applicationCategory":"ProductivityApplication","operatingSystem":"Web","inLanguage":["fa","en"],"description":"وب اپ سبک و نصب‌پذیر برای ثبت و مدیریت تسک‌های روزانه."}
@@ -37,11 +37,11 @@
     <div class="ambient ambient-a"></div>
     <div class="ambient ambient-b"></div>
 
-    <main class="phone-frame">
+    <main id="appMain" class="phone-frame">
       <header class="topbar">
         <div class="brand">
           <div class="brand-mark">
-            <img src="./assets/icons/app/icon.svg" width="58" height="58" alt="" aria-hidden="true">
+            <img src="./assets/icons/app/logo-mark.svg" width="58" height="58" alt="" aria-hidden="true">
           </div>
           <div>
             <p class="eyebrow" data-i18n="eyebrow">نوشتن ساده و آسان</p>
@@ -105,7 +105,8 @@
         </div>
       </section>
 
-      <section class="task-input-card">
+      <div id="taskInputHome">
+      <section id="taskInputCard" class="task-input-card">
         <div class="task-input-head">
           <div>
             <h3 data-i18n="newTask">تسک جدید</h3>
@@ -148,6 +149,7 @@
           <span data-i18n="addToTasks">افزودن به تسک هام</span>
         </button>
       </section>
+      </div>
 
       <section class="task-board">
         <div class="section-head">
@@ -210,7 +212,7 @@
       <footer class="bottom-panel">
         <div class="bottom-glow" aria-hidden="true"></div>
         <p class="copyright-text">Copyright © <a href="https://amirrezaa.ir" target="_blank" rel="noopener noreferrer">amirrezaa.ir</a></p>
-        <p class="app-version" aria-label="Application version">v2.1.0</p>
+        <p class="app-version" aria-label="Application version" data-app-version></p>
       </footer>
     </main>
   </div>
@@ -271,9 +273,10 @@
       </div>
 
       <div class="modal-body settings-body">
-        <section class="settings-block">
-          <div class="section-head compact">
-            <h4 data-i18n="appearance">حالت نمایش</h4>
+        <section class="settings-block settings-section settings-appearance">
+          <div class="settings-section-head">
+            <div><p class="settings-kicker" data-i18n="appearanceGroup">نمایش</p><h4 data-i18n="appearance">حالت نمایش</h4></div>
+            <p data-i18n="appearanceHint">حالت مناسب محیطت را انتخاب کن.</p>
           </div>
           <div class="segmented" id="appearanceModes">
             <button type="button" data-mode="system" data-i18n="system">سیستم</button>
@@ -282,21 +285,23 @@
           </div>
         </section>
 
-        <section class="settings-block">
-          <div class="section-head compact">
-            <h4 data-i18n="taskLimit">محدودیت تسک فعال</h4>
-            <span id="limitValue">۵</span>
+        <section class="settings-block settings-section settings-behavior">
+          <div class="settings-section-head">
+            <div><p class="settings-kicker" data-i18n="behaviorGroup">رفتار برنامه</p><h4 data-i18n="taskLimit">محدودیت تسک فعال</h4></div>
+            <span id="limitValue" class="setting-value">۵</span>
           </div>
+          <p class="settings-hint" data-i18n="taskLimitHint">سقف تسک‌های فعال را متناسب با روزت تنظیم کن.</p>
           <div class="range-field">
             <input id="limitRange" type="range" min="1" max="50" value="5">
           </div>
         </section>
 
-        <section class="settings-block">
-          <div class="section-head compact">
-            <h4 data-i18n="fontSize">اندازه فونت</h4>
-            <span id="fontSizeValue">معمولی</span>
+        <section class="settings-block settings-section settings-reading">
+          <div class="settings-section-head">
+            <div><p class="settings-kicker" data-i18n="readingGroup">خوانایی</p><h4 data-i18n="fontSize">اندازه فونت</h4></div>
+            <span id="fontSizeValue" class="setting-value">معمولی</span>
           </div>
+          <p class="settings-hint" data-i18n="fontHint">اندازه و وزن نوشتار را برای خواندن راحت‌تر تنظیم کن.</p>
           <div class="range-field">
             <input id="fontSizeRange" type="range" min="0" max="4" value="2">
           </div>
@@ -316,19 +321,21 @@
           </label>
         </section>
 
-        <section class="settings-block">
-          <div class="section-head compact">
-            <h4 data-i18n="themes">دیزاین‌ها</h4>
-            <span data-i18n="themeCount">۸ حالت</span>
+        <section class="settings-block settings-section settings-theme">
+          <div class="settings-section-head">
+            <div><p class="settings-kicker" data-i18n="themeGroup">رنگ و فضا</p><h4 data-i18n="themes">دیزاین‌ها</h4></div>
+            <span class="setting-value" data-i18n="themeCount">۶ حالت</span>
           </div>
+          <p class="settings-hint" data-i18n="themeHint">یک پالت هماهنگ برای ظاهر برنامه انتخاب کن.</p>
           <div id="themeGrid" class="theme-grid"></div>
         </section>
 
-        <section class="settings-block">
-          <div class="section-head compact">
-            <h4 data-i18n="appLock">قفل برنامه</h4>
-            <span id="lockStatus" data-i18n="lockDisabled">غیرفعال</span>
+        <section class="settings-block settings-section settings-privacy">
+          <div class="settings-section-head">
+            <div><p class="settings-kicker" data-i18n="privacyGroup">حریم خصوصی</p><h4 data-i18n="appLock">قفل برنامه</h4></div>
+            <span id="lockStatus" class="setting-value" data-i18n="lockDisabled">غیرفعال</span>
           </div>
+          <p class="settings-hint" data-i18n="lockHint">برای حریم خصوصی روزمره، یک پین چهاررقمی محلی بگذار.</p>
           <div class="security-controls">
             <label class="sr-only" for="pinInput" data-i18n="pinLabel">پین ۴ تا ۱۲ رقمی</label>
             <input id="pinInput" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" type="password" autocomplete="new-password" data-i18n-placeholder="pinPlaceholder">
@@ -396,6 +403,22 @@
     </section>
   </div>
 
+  <button id="mobileAddBtn" class="floating-add-btn" type="button" aria-label="افزودن تسک جدید" data-i18n-aria="openTaskComposer">
+    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    <span class="sr-only" data-i18n="openTaskComposer">افزودن تسک جدید</span>
+  </button>
+
+  <div id="mobileTaskModal" class="modal mobile-task-modal" hidden>
+    <div class="modal-backdrop" data-close="mobileTaskModal"></div>
+    <section id="mobileTaskPanel" class="modal-panel mobile-task-panel" role="dialog" aria-modal="true" aria-labelledby="mobileTaskTitle">
+      <div class="modal-head mobile-task-modal-head">
+        <h3 id="mobileTaskTitle" data-i18n="newTask">تسک جدید</h3>
+        <button id="mobileTaskCloseBtn" class="icon-btn" type="button" data-close="mobileTaskModal" aria-label="بستن" data-i18n-aria="close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="mobileTaskMount" class="mobile-task-mount"></div>
+    </section>
+  </div>
+
   <div id="languageLoader" class="language-loader" role="status" aria-live="polite" hidden>
     <div class="language-loader-card">
       <div class="language-loader-orbit"><i class="fa-solid fa-language"></i></div>
@@ -443,7 +466,7 @@
     </li>
   </template>
 
-  <script src="./assets/vendor/jalalidatepicker/jalalidatepicker.min.js"></script>
+  <script src="./assets/js/config.js"></script>
   <script src="./assets/js/app.js"></script>
 </body>
 </html>

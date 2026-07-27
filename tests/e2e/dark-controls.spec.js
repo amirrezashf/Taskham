@@ -1,8 +1,10 @@
 const { test, expect } = require("@playwright/test")
+const { TaskPage } = require("../pages/task.page")
 
 test("keeps select controls and the Jalali picker readable in dark mode", async ({ page }) => {
+  const tasks = new TaskPage(page)
   await page.goto("/index.html")
-  const themes = ["ocean", "sunset", "forest", "berry", "noir", "gold", "lavender", "ice"]
+  const themes = ["ocean", "sunset", "forest", "noir", "lavender", "ice"]
 
   for (const theme of themes) {
     await page.evaluate((currentTheme) => {
@@ -11,6 +13,7 @@ test("keeps select controls and the Jalali picker readable in dark mode", async 
       localStorage.setItem("taskham.theme", currentTheme)
     }, theme)
     await page.reload()
+    await tasks.openComposer()
 
     await expect(page.locator("html")).toHaveClass(/dark/)
     await expect(page.locator("#taskCategoryInput")).toHaveCSS("color-scheme", "dark")

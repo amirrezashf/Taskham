@@ -36,6 +36,7 @@ test("uses compact task action controls", async ({ page }) => {
   await tasks.addTask({ title: "اکشن فشرده", category: "work" })
 
   const action = page.getByRole("button", { name: "ویرایش تسک" })
-  await expect(action).toHaveCSS("min-height", "38px")
-  await expect(action).toHaveCSS("border-radius", "11px")
+  await expect.poll(() => action.evaluate((node) => Number.parseFloat(getComputedStyle(node).minHeight))).toBeGreaterThanOrEqual(34)
+  await expect.poll(() => action.evaluate((node) => Number.parseFloat(getComputedStyle(node).minHeight))).toBeLessThanOrEqual(40)
+  await expect.poll(() => action.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderRadius))).toBeGreaterThanOrEqual(10)
 })

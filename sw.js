@@ -1,19 +1,21 @@
-const CACHE_NAME = "taskham-v24"
+const CACHE_NAME = "taskham-v27"
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./sw.js",
   "./assets/css/style.css",
+  "./assets/js/config.js",
   "./assets/js/app.js",
-  "./assets/vendor/jalalidatepicker/jalalidatepicker.min.js",
-  "./assets/vendor/jalalidatepicker/jalalidatepicker.min.css",
   "./assets/icons/fontawesome/css/task-icons.css",
   "./assets/icons/fontawesome/webfonts/fa-regular-400.woff2",
   "./assets/icons/fontawesome/webfonts/fa-solid-900.woff2",
-  "./assets/icons/app/icon.svg",
+  "./assets/icons/app/logo-mark.svg",
+  "./assets/icons/app/favicon.svg",
   "./assets/icons/app/icon-192.png",
   "./assets/icons/app/icon-512.png",
+  "./assets/icons/app/icon-maskable-512.png",
+  "./assets/icons/app/favicon-16.png",
   "./assets/icons/app/favicon-32.png",
   "./assets/icons/app/apple-touch-icon.png"
 ]

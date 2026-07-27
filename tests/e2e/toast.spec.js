@@ -1,9 +1,11 @@
 const { test, expect } = require("@playwright/test")
+const { openTaskComposer } = require("../pages/task.page")
 
 test("shows validation feedback as a temporary bottom-right toast", async ({ page }) => {
   await page.goto("/index.html")
   await page.evaluate(() => localStorage.clear())
   await page.reload()
+  await openTaskComposer(page)
 
   await page.getByRole("button", { name: "افزودن به تسک هام" }).click()
   const toast = page.locator("#statusMessage")
@@ -23,6 +25,7 @@ test("shows a success toast after adding a task", async ({ page }) => {
   await page.goto("/index.html")
   await page.evaluate(() => localStorage.clear())
   await page.reload()
+  await openTaskComposer(page)
 
   await page.locator("#taskInput").fill("پیام موفقیت")
   await page.locator("#taskCategoryInput").selectOption("personal")

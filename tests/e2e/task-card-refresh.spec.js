@@ -6,6 +6,7 @@ test("renders accessible icon tags for the refreshed task card", async ({ page }
   await tasks.goto()
   await tasks.clearData()
 
+  await tasks.openComposer()
   await page.locator("#taskPriorityInput").selectOption("high")
   await page.locator("#taskStatusInput").selectOption("inProgress")
   await tasks.addTask({ title: "کارت بازطراحی‌شده", category: "work" })

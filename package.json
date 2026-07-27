@@ -1,5 +1,6 @@
 {
   "name": "taskham",
+  "version": "2.2.0",
   "description": "A bilingual offline-first PWA for managing daily tasks.",
   "private": true,
   "scripts": {
@@ -7,8 +8,5 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1"
-  },
-  "dependencies": {
-    "@majidh1/jalalidatepicker": "^1.0.0"
   }
 }

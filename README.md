@@ -52,7 +52,7 @@
 
 - جابه‌جایی کامل بین فارسی و انگلیسی با چیدمان RTL/LTR مناسب هر زبان.
 - انتخاب حالت روشن، تیره یا هماهنگ با سیستم.
-- هشت تم بصری، پنج اندازه فونت، سه وزن فونت و انتخاب خانواده فونت.
+- شش تم بصری، پنج اندازه فونت، سه وزن فونت و انتخاب خانواده فونت.
 - حالت کنتراست بالا برای خوانایی بهتر.
 - کنترل‌های دارای نام قابل‌دسترسی، حالت focus مشخص و پشتیبانی از پیمایش
   صفحه‌کلید در اجزای اصلی.
@@ -71,8 +71,8 @@
 - Web App Manifest و Service Worker برای نصب‌پذیری و cache آفلاین.
 - [Font Awesome Free](https://fontawesome.com/) به‌صورت محلی برای آیکون‌های
   رابط کاربری.
-- [`@majidh1/jalalidatepicker`](https://www.npmjs.com/package/@majidh1/jalalidatepicker)
-  برای date picker جلالی.
+- Jalali Datepicker به‌صورت فایل محلی در `assets/vendor`؛ فقط هنگام تمرکز
+  روی ورودی تاریخ فارسی بارگذاری می‌شود.
 - [Playwright](https://playwright.dev/) برای تست end-to-end در Chromium دسکتاپ
   و نمای موبایل Pixel 5.
 
@@ -233,7 +233,7 @@ backend, or external API is required to create and manage tasks.
 
 - Switch completely between Persian and English with suitable RTL/LTR layouts.
 - Choose light, dark, or system appearance.
-- Choose from eight visual themes, five font sizes, three font weights, and
+- Choose from six visual themes, five font sizes, three font weights, and
   supported font families.
 - Use high-contrast mode for stronger readability.
 - Use controls with accessible names, visible focus states, and keyboard
@@ -253,8 +253,8 @@ backend, or external API is required to create and manage tasks.
 - Framework-free HTML, CSS, and JavaScript.
 - Web App Manifest and Service Worker for installability and offline caching.
 - A local [Font Awesome Free](https://fontawesome.com/) subset for UI icons.
-- [`@majidh1/jalalidatepicker`](https://www.npmjs.com/package/@majidh1/jalalidatepicker)
-  for the Jalali date picker.
+- A locally bundled Jalali Datepicker in `assets/vendor`, loaded only when a
+  Persian date input receives focus.
 - [Playwright](https://playwright.dev/) for end-to-end testing on desktop
   Chromium and a Pixel 5 mobile viewport.
 

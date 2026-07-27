@@ -8,9 +8,11 @@ test("filters tasks by category, priority, and status while preserving font pref
   await expect(page.locator("html")).toHaveAttribute("data-font-family", "dana")
   await expect(page.locator("html")).toHaveAttribute("data-font-weight", "500")
 
+  await tasks.openComposer()
   await page.locator("#taskPriorityInput").selectOption("high")
   await page.locator("#taskStatusInput").selectOption("review")
   await tasks.addTask({ title: "بازبینی کاری", category: "work" })
+  await tasks.openComposer()
   await page.locator("#taskPriorityInput").selectOption("low")
   await page.locator("#taskStatusInput").selectOption("pending")
   await tasks.addTask({ title: "کار شخصی", category: "personal" })
@@ -56,6 +58,26 @@ test.describe("offline app shell", () => {
     await page.reload()
 
     await expect(page.locator("h1")).toHaveText("تسک هام")
+    await expect(page.locator("[data-app-version]")).toHaveText("v2.2.0")
+    await page.context().setOffline(false)
+  })
+
+  test("loads the Persian date picker from the runtime cache when offline", async ({ page }) => {
+    const focusDateInput = async () => {
+      const mobileComposer = page.getByRole("button", { name: "افزودن تسک جدید" })
+      if (await mobileComposer.isVisible()) await mobileComposer.click()
+      await page.locator("#taskDueInput").focus()
+    }
+
+    await page.goto("/index.html")
+    await page.evaluate(() => navigator.serviceWorker.ready)
+    await page.reload()
+    await focusDateInput()
+    await expect(page.locator("#jalaliDatepickerScript")).toBeAttached()
+    await page.context().setOffline(true)
+    await page.reload()
+    await focusDateInput()
+    await expect(page.locator("#jalaliDatepickerScript")).toBeAttached()
     await page.context().setOffline(false)
   })
 })

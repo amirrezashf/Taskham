@@ -33,7 +33,7 @@ test.describe("My Tasks core workflows", () => {
 
     await tasks.search.fill("فصل سوم")
     await expect(page.getByText("مطالعه طراحی")).toBeVisible()
-    await expect(page.getByText("تماس با تیم")).toBeHidden()
+    await expect(page.locator(".task-item", { hasText: "تماس با تیم" })).toBeHidden()
     await page.getByRole("button", { name: "پاک کردن" }).click()
 
     await page.getByRole("button", { name: "پین کردن" }).first().click()
@@ -66,11 +66,14 @@ test.describe("My Tasks core workflows", () => {
   })
 
   test("requires a category and normalizes Persian PIN digits", async ({ page }) => {
+    await tasks.openComposer()
     await tasks.title.fill("تسک بدون دسته")
     await tasks.addButton.click()
     await expect(page.getByText("دسته‌بندی را انتخاب کنید.")).toBeVisible()
     await expect(page.locator("#statusMessage")).toHaveClass(/is-error/)
     await expect(page.locator(".task-item")).toHaveCount(0)
+    await page.keyboard.press("Escape")
+    await expect(page.locator("#mobileTaskModal")).toBeHidden()
 
     await openTopbarAction(page, "تنظیمات")
     await page.locator("#pinInput").fill("۱۲۳۴۵")

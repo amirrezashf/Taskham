@@ -6,9 +6,11 @@ test("keeps pinned tasks above explicit priorities, persists status, and keeps o
   await tasks.goto()
   await tasks.clearData()
 
+  await tasks.openComposer()
   await page.locator("#taskPriorityInput").selectOption("high")
   await page.locator("#taskStatusInput").selectOption("inProgress")
   await tasks.addTask({ title: "اولویت بالا", category: "work" })
+  await tasks.openComposer()
   await page.locator("#taskPriorityInput").selectOption("low")
   await tasks.addTask({ title: "اولویت پایین", category: "study" })
   await tasks.addTask({ title: "تسک پین‌شده", category: "personal" })
