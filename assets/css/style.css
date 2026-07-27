@@ -2542,8 +2542,8 @@ input, textarea { border: 0; outline: none; color: inherit; background: none; }
 
   .mobile-task-modal.is-open .mobile-task-panel { opacity: 1; transform: translateY(0) scale(1); }
   .mobile-task-modal.is-closing .mobile-task-panel { opacity: 0; transform: translateY(12%) scale(.98); }
-  .mobile-task-modal .task-input-card { display: block; margin: 0; padding: 18px max(18px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)); border: 0; border-radius: 0; background: transparent; }
-  .mobile-task-modal-head { position: sticky; top: 0; z-index: 2; padding: 16px max(18px, env(safe-area-inset-right)); background: color-mix(in srgb, var(--surface-2) 94%, transparent); backdrop-filter: blur(14px); }
+  .mobile-task-modal .task-input-card { display: block; margin: 0; padding: 18px max(18px, env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)); border: 0; border-radius: 0 0 20px 20px; background: transparent; }
+  .mobile-task-modal-head { position: sticky; top: 0; z-index: 2; padding: 16px max(18px, env(safe-area-inset-right)); border-radius: 20px 20px 0 0; background: color-mix(in srgb, var(--surface-2) 94%, transparent); backdrop-filter: blur(14px); }
   .mobile-task-modal .task-note-input { min-height: 96px; }
 
   .task-actions { display: grid; grid-template-columns: repeat(4, minmax(40px, 1fr)); width: 100%; gap: 6px; }

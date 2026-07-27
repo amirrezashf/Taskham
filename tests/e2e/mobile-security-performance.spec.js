@@ -48,6 +48,8 @@ test("uses a focused mobile task composer and a two-column metrics grid", async 
   await page.getByRole("button", { name: "افزودن تسک جدید" }).click()
   await expect(page.locator("#mobileTaskModal")).toBeVisible()
   await expect(page.locator("#mobileTaskPanel")).toHaveAttribute("role", "dialog")
+  await expect(page.locator(".mobile-task-modal-head")).toHaveCSS("border-top-left-radius", "20px")
+  await expect(page.locator("#taskInputCard")).toHaveCSS("border-bottom-left-radius", "20px")
   await expect(page.locator("#taskInput")).toBeFocused()
   expect(await page.locator("#appMain").evaluate((node) => node.inert)).toBeTruthy()
 
